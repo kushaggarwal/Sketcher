@@ -9,21 +9,24 @@ function setup() {
 }
 var rang = "black";
 socket.on("draw", function (data) {
-  // Draw a blue circle
-  //createCanvas(1000, 1000);
-  console.log("data recieved" + data.mouseX);
-  fill(rang);
-  noStroke();
-  ellipse(data.x, data.y, 80, 80);
+  //ellipse(data.x, data.y, 80, 80);
+  stroke(data.rang);
+  strokeWeight(10);
+  fill(color(15, 172, 7));
+  line(data.x, data.y, data.px, data.py);
 });
 
 function mouseDragged() {
   // Make a little object with mouseX and mouseY
   let data = {
+    rang: rang,
     x: mouseX,
     y: mouseY,
+    px: pmouseX,
+    py: pmouseY,
   };
   // Send that object to the socket
+  console.log("First " + pmouseY + pmouseX);
   socket.emit("mouse", data);
 }
 
