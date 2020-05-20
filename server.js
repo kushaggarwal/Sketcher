@@ -13,7 +13,6 @@ io.on("connection", (socket) => {
   socket.emit("connected");
   socket.on("mouse", function (data) {
     // Data comes in as whatever was sent, including objects
-    console.log("Received: 'mouse' " + data.x + " " + data.y);
     // Send it to all other clients
     io.emit("draw", data);
   });
